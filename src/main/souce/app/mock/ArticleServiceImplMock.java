@@ -23,4 +23,14 @@ public class ArticleServiceImplMock implements ArticleService {
     public List<Post> getArticlesByTag(int tag) {
         return postService.getPostByTag(tag);
     }
+
+    @Override
+    public int likeArticle(int id) {
+        return postService.likePost(id);
+    }
+
+    @Override
+    public int dislikeArticle(int id) {
+        return postService.dislikePost(id);
+    }
 }

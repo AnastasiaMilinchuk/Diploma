@@ -8,4 +8,6 @@ import app.entities.userdata.UserData;
 public interface UserService {
     UserData getUser(String login);
     void create(UserData userData);
+    void addLikePost(int postId, String userEmail);
+    void removelikePost(int postId, String userEmail);
 }

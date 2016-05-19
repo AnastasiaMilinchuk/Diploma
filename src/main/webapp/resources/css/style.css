@@ -28,3 +28,13 @@ footer {
     }
     .row.content {height: auto;}
 }
+
+.article-title{
+    position: relative;
+    float: left;
+    width: 50%;
+}
+.like-button{
+    background-color: #ffffff;
+    border: none;
+}

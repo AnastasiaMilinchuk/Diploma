@@ -23,6 +23,7 @@ public class PostService implements app.services.PostService{
     String smallText = "Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
     Map<Integer, Integer> ids;
     int[] i = {32542, 24534, 45334, 25443};
+    int[] likes = {23, 4, 56, 11};
 
     public PostService() {
         ids = new HashMap<>();
@@ -38,7 +39,7 @@ public class PostService implements app.services.PostService{
             List tag = new ArrayList<>();
             tag.add(tags[i]);
             Object[] id = ids.values().toArray();
-            posts.add(new Post((int)(this.i[i]), p[i], author[i], (new Random()).nextInt(60), new Date(12), tag, smallText));
+            posts.add(new Post((int)(this.i[i]), p[i], author[i], likes[i], new Date(12), tag, smallText));
         }
         return posts;
     }
@@ -48,7 +49,7 @@ public class PostService implements app.services.PostService{
         int i = ids.get(id);
         List tag = new ArrayList<>();
         tag.add(tags[i]);
-        return new Post(id, p[i], author[i], (new Random()).nextInt(60), new Date(12), tag, smallText);
+        return new Post(id, p[i], author[i], likes[i], new Date(12), tag, smallText);
     }
 
     public static List<Tag> getTags() {
@@ -69,5 +70,15 @@ public class PostService implements app.services.PostService{
         List<Post> posts = new ArrayList<>();
         posts.add(getPostById(this.i[tag]));
         return posts;
+    }
+
+    @Override
+    public int likePost(int id) {
+        return ++likes[ids.get(id)];
+    }
+
+    @Override
+    public int dislikePost(int id) {
+        return --likes[ids.get(id)];
     }
 }

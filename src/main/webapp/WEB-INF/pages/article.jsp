@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: click
@@ -19,6 +21,7 @@
         <jsp:include page="navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
                 <h2>${post.title}</h2>
+
                 <h5><span class="glyphicon glyphicon-time"></span> Post by <a href="#">${post.author}</a>, ${post.createDate},
                 </h5>
                 <c:forEach var="tag" items="${post.tags}">
@@ -66,7 +69,9 @@
                 <br>
                 <p>${post.smallText}</p>
                 <br>
-                <span class="glyphicon glyphicon-thumbs-up"></span> ${post.likes}
+                <form:form modelAttribute="post" action="${post.id}" method="POST" enctype="utf8">
+                    <h4> Like:  <a href=""><button type="submit" class="glyphicon glyphicon-thumbs-up like-button"> </button></a> ${post.likes}</h4>
+                </form:form>
                 <br><br>
         </div>
     </div>

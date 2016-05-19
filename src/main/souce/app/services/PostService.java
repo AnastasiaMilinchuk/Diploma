@@ -11,4 +11,6 @@ public interface PostService {
     public List<Post> getPostsList();
     public Post getPostById(int id);
     public List<Post> getPostByTag(int tag);
+    public int likePost(int id);
+    public int dislikePost(int id);
 }

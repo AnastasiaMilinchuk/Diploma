@@ -18,4 +18,14 @@ public class ArticleServiceImpl implements ArticleService{
     public List<Post> getArticlesByTag(int tag) {
         return null;
     }
+
+    @Override
+    public int likeArticle(int id) {
+        return 0;
+    }
+
+    @Override
+    public int dislikeArticle(int id) {
+        return 0;
+    }
 }

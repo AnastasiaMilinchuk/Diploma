@@ -1,11 +1,17 @@
 package app.entities.userdata;
 
+import app.entities.entityActivity.Tag;
+import app.entities.journal.JournalActivity;
+import app.entities.photo.Photo;
+import app.entities.questionary.Answer;
 import app.validation.annotations.PasswordMatches;
 import app.validation.annotations.ValidEmail;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by click on 5/5/2016.
@@ -34,6 +40,14 @@ public class UserData {
     private Date birthday;
     private String sex;
     private String role;
+    private List<Tag> activities;
+    private Date createDate;
+    private List<JournalActivity> journalActivity;
+    private List<Integer> ownArticle;
+    private Set<Integer> likeArticles;
+    private List<Answer> answers;
+    private Photo avatar;
+
 
     public UserData() {
     }
@@ -108,5 +122,61 @@ public class UserData {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Tag> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Tag> activities) {
+        this.activities = activities;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public List<JournalActivity> getJournalActivity() {
+        return journalActivity;
+    }
+
+    public void setJournalActivity(List<JournalActivity> journalActivity) {
+        this.journalActivity = journalActivity;
+    }
+
+    public List<Integer> getOwnArticle() {
+        return ownArticle;
+    }
+
+    public void setOwnArticle(List<Integer> ownArticle) {
+        this.ownArticle = ownArticle;
+    }
+
+    public Set<Integer> getLikeArticles() {
+        return likeArticles;
+    }
+
+    public void setLikeArticles(Set<Integer> likeArticles) {
+        this.likeArticles = likeArticles;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public Photo getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Photo avatar) {
+        this.avatar = avatar;
     }
 }

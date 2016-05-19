@@ -16,6 +16,9 @@ public class Post {
     private List<String> tags;
     private String smallText;
 
+    public Post() {
+    }
+
     public Post(int id, String title, String author, int likes, Date createDate, List<String> tags, String smallText) {
         this.id = id;
         this.title = title;

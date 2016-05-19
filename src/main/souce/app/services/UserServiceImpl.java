@@ -27,5 +27,15 @@ public class UserServiceImpl implements UserService {
         userDAO.create(userData);
     }
 
+    @Override
+    public void addLikePost(int postId, String userEmail) {
+
+    }
+
+    @Override
+    public void removelikePost(int postId, String userEmail) {
+
+    }
+
 
 }

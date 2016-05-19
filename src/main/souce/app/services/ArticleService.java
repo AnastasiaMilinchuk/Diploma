@@ -11,4 +11,6 @@ import java.util.List;
 public interface ArticleService {
     public app.entities.post.Post getArticleById(int id);
     public List<Post> getArticlesByTag(int tag);
+    public int likeArticle(int id);
+    public int dislikeArticle(int id);
 }

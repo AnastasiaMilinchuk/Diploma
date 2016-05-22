@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Created by click on 5/16/2016.
@@ -71,8 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // Указываем Spring контейнеру, что надо инициализировать <b></b>ShaPasswordEncoder
     // Это можно вынести в WebAppConfig, но для понимаемости оставил тут
     @Bean
-    public ShaPasswordEncoder getShaPasswordEncoder(){
-        return new ShaPasswordEncoder();
+    public BCryptPasswordEncoder getShaPasswordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }

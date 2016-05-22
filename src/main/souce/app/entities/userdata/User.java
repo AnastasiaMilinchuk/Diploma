@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by click on 5/5/2016.
  */
-public class User extends UserData {
+public class User {
     private List<Tag> activities;
     private Date createDate;
     private List<JournalActivity> journalActivity;

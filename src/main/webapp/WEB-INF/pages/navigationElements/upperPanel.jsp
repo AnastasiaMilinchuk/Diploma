@@ -13,7 +13,6 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/diploma1/home">Home</a></li>
-            <li><a href="/diploma1/articles">Articles</a></li>
             <li><a href="/diploma1/tags">Tags</a></li>
             <sec:authorize access="!isAuthenticated()">
                 <li><a href="/diploma1/login">Login</a></li>
@@ -21,7 +20,6 @@
             <sec:authorize access="isAuthenticated()">
                 <li><a href="/diploma1/logout">Logout</a></li>
             </sec:authorize>
-
         </ul>
     </div>
 </nav>

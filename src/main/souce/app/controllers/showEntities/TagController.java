@@ -26,7 +26,7 @@ public class TagController {
 
     @RequestMapping(value = "/tags",method = RequestMethod.GET)
     public String loginPage( Model model){
-//        Post post = articleDetailsService.getPostByID(model.getId());
+//        Post post = articleDetailsService.getPostByID(model.getConfig_id());
 //        model.addAttribute("post", post);
         model.addAttribute("tags", tagService.getAllTags());
         return "tags";

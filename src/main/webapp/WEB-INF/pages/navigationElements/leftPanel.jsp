@@ -10,7 +10,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <sec:authorize access="isAuthenticated()">
     <div class="col-sm-3 sidenav leftnav">
-        <h4>${userData.firstName} ${userData.lastName}</h4>
         <ul class="nav nav-pills nav-stacked">
             <li><a href="home">Profile</a></li>
             <li><a href="#section2">My Articles</a></li>

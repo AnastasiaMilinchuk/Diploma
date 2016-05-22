@@ -1,7 +1,9 @@
 package app.services;
 
+import app.entities.entityActivity.Comment;
 import app.entities.post.Article;
 import app.entities.post.Post;
+import app.entities.userdata.UserData;
 
 import java.util.List;
 
@@ -11,6 +13,9 @@ import java.util.List;
 public interface ArticleService {
     public app.entities.post.Post getArticleById(int id);
     public List<Post> getArticlesByTag(int tag);
+    public List<Post> getArticlesList();
     public int likeArticle(int id);
     public int dislikeArticle(int id);
+    public Post addComment(Comment comment, int postId);
+    public Post deleteComment(int id);
 }

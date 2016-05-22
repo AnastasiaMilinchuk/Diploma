@@ -1,5 +1,9 @@
 package app.config;
 
+import app.actions.post.CommentPostAction;
+import app.actions.post.LikePostAction;
+import app.dao.PostDAO;
+import app.dao.PostDAOImpl;
 import app.dao.UserDAO;
 import app.dao.UserDAOImpl;
 import app.mock.ArticleServiceImplMock;
@@ -49,9 +53,26 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public ArticleService getArticleService() {
-        return new ArticleServiceImplMock();
+        return new ArticleServiceImpl();
     }
 
     @Bean
     public TagService getTagService(){return new TagServiceImpl();}
+
+    @Bean
+    public LikePostAction getLikePostAction(){ return new LikePostAction();}
+
+    @Bean
+    public MongoDB getMongoDB(){
+        return new MongoDB();
+    }
+
+    @Bean
+    CommentPostAction getCommentPostAction(){
+        return new CommentPostAction();
+    }
+    @Bean
+    PostDAO getPostDAO(){
+        return new PostDAOImpl();
+    }
 }

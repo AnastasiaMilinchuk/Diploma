@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by click on 5/19/2016.
  */
-public class LikePost {
+public class LikePostAction {
     // check if user like post
     // if not - add like to post and add user post to user
     // if like - dislike post
     @Autowired
-    ArticleService articleService;
+    private ArticleService articleService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     public void like(int postId, String userEmail){
         if(!checkLike(postId, userEmail)){
@@ -31,12 +31,8 @@ public class LikePost {
         }
 
     }
-
-    private void dislike(){
-
-    }
     public boolean checkLike(int postId, String userEmail){
         UserData userData = userService.getUser(userEmail);
-        return userData.getLikeArticles().contains(postId);
+        return userData.getLikePosts().contains(postId);
     }
 }

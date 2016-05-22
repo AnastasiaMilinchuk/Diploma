@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // с помощью нашего сервиса UserService получаем User
-        UserData user = userService.getUser("admin");
+        UserData user = userService.getUser(email);
         // указываем роли для этого пользователя
         roles = new HashSet();
         roles.add(new SimpleGrantedAuthority("user"));

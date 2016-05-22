@@ -23,6 +23,7 @@ public class Initializer implements WebApplicationInitializer {
         // регистрация конфигураций в Spring контексте
         ctx.register(SecurityConfig.class);
         ctx.register(WebAppConfig.class);
+        ctx.register(MongoConfig.class);
         servletContext.addListener(new ContextLoaderListener(ctx));
         ctx.setServletContext(servletContext);
 

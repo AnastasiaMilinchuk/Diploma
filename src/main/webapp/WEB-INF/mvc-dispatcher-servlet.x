@@ -18,5 +18,6 @@
     <bean id="userDAO" class="app.dao.UserDAOImpl" />
     <bean id="articleService" class="app.mock.ArticleServiceImplMock" />
     <bean id="tagService" class="app.services.TagServiceImpl" />
-
+    <bean id="likePostAction" class="app.actions.post.LikePostAction"/>
+    <bean id="mongoDB" class="app.config.MongoDB"/>
 </beans>

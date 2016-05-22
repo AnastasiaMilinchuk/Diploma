@@ -2,23 +2,28 @@ package app.entities.userdata;
 
 import app.entities.entityActivity.Tag;
 import app.entities.journal.JournalActivity;
-import app.entities.photo.Photo;
 import app.entities.questionary.Answer;
 import app.validation.annotations.PasswordMatches;
 import app.validation.annotations.ValidEmail;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Created by click on 5/5/2016.
  */
+@Document(collection = "users")
 @PasswordMatches
-public class UserData {
-    private int id;
+public class UserData{
+    public static String COLLECTION = "users";
+    private String id;
+    private int config_id;
+
     @ValidEmail
     private String email;
 
@@ -44,20 +49,28 @@ public class UserData {
     private Date createDate;
     private List<JournalActivity> journalActivity;
     private List<Integer> ownArticle;
-    private Set<Integer> likeArticles;
+    private Set<Integer> likePosts = new HashSet<>();
     private List<Answer> answers;
-    private Photo avatar;
+    private String avatar;
 
 
     public UserData() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public int getConfig_id() {
+        return config_id;
+    }
+
+    public void setConfig_id(int id) {
+        this.config_id = id;
     }
 
     public String getEmail() {
@@ -156,12 +169,12 @@ public class UserData {
         this.ownArticle = ownArticle;
     }
 
-    public Set<Integer> getLikeArticles() {
-        return likeArticles;
+    public Set<Integer> getLikePosts() {
+        return likePosts;
     }
 
-    public void setLikeArticles(Set<Integer> likeArticles) {
-        this.likeArticles = likeArticles;
+    public void setLikePosts(Set<Integer> likePosts) {
+        this.likePosts = likePosts;
     }
 
     public List<Answer> getAnswers() {
@@ -172,11 +185,11 @@ public class UserData {
         this.answers = answers;
     }
 
-    public Photo getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Photo avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

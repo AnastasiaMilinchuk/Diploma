@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%--
   Created by IntelliJ IDEA.
   User: click
@@ -69,10 +70,42 @@
                 <br>
                 <p>${post.smallText}</p>
                 <br>
-                <form:form modelAttribute="post" action="${post.id}" method="POST" enctype="utf8">
-                    <h4> Like:  <a href=""><button type="submit" class="glyphicon glyphicon-thumbs-up like-button"> </button></a> ${post.likes}</h4>
+
+            <sec:authorize access="isAuthenticated()">
+                    <form:form modelAttribute="post" action="/diploma1/article/${post.config_id}/like" method="POST" enctype="utf8">
+                        <h4> Like:  <a href=""><button type="submit" class="glyphicon glyphicon-thumbs-up like-button"> </button></a> ${post.likes}</h4>
+                    </form:form>
+                <br>
+                <div id="comments">
+                <h4>Leave a Comment:</h4>
+                <form:form action="/diploma1/article/${post.config_id}/comments" modelAttribute="comment" method="post" enctype="utf8">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </form:form>
                 <br><br>
+
+                <p><span class="badge">${post.comments}</span> Comments:</p><br>
+                    <c:forEach var="comment" items="${post.comments}">
+                        <div class="row">
+                            <div class="col-sm-2 text-center">
+                                <img src="${comment.authorPhotoUrl}" class="img-circle" height="65" width="65" alt="Avatar">
+                            </div>
+                            <div class="col-sm-10">
+                                <h4>${comment.author}<small>${comment.dateCreate}</small></h4>
+                                <p>${comment.text}</p>
+                                <br>
+                            </div>
+
+                        </div>
+                    </c:forEach>
+
+                </div>
+            </sec:authorize >
+
+                <br><br>
+
         </div>
     </div>
 </div>

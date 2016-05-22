@@ -1,5 +1,6 @@
 package app.controllers.showEntities;
 
+import app.services.ArticleService;
 import app.services.PostService;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = {"/", "/home"})
 public class HomePageController {
 
-    private PostService postService;
-
     @Autowired
-    public HomePageController(PostService postService) {
-        this.postService = postService;
-    }
+    private ArticleService articleService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String homePageController(Model model){
         // get from service
-        model.addAttribute("posts", postService.getPostsList());
+        model.addAttribute("posts", articleService.getArticlesList());
         return "home";
 
     }

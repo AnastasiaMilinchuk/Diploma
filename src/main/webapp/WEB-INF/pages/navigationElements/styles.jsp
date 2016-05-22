@@ -11,8 +11,10 @@
 <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap.css.map"/>" rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap.min.css.map"/>" rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap-theme.css.map"/>" rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap-theme.min.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap-theme.min.css.map"/>" rel="stylesheet">
 <link href="<c:url value="/resources/css/bootstrap-theme.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 

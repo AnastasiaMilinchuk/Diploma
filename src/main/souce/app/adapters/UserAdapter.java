@@ -2,6 +2,7 @@ package app.adapters;
 
 import app.entities.userdata.UserData;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Objects;
 
@@ -11,9 +12,8 @@ import java.util.Objects;
 public class UserAdapter {
 
     public static UserData adapt(UserData userData){
-        Object o = new Object();
-        userData.setPassword(new ShaPasswordEncoder().encodePassword(userData.getPassword(), o));
-        userData.setMatchingPassword(new ShaPasswordEncoder().encodePassword(userData.getMatchingPassword(), o));
+        userData.setPassword(new BCryptPasswordEncoder().encode(userData.getPassword()));
+        userData.setMatchingPassword(new BCryptPasswordEncoder().encode(userData.getMatchingPassword()));
         return userData;
     }
 }

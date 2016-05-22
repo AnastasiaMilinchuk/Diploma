@@ -19,18 +19,19 @@
     <div class="row content">
     <jsp:include page="navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
+            <jsp:include page="navigationElements/articlesPanel.jsp"/>
             <h4><small>RECENT POSTS</small></h4>
             <hr>
             <c:forEach var="num" items="${posts}">
-                <h2><a href="/diploma1/article/${num.id}"><h2>${num.title}</h2></a></h2>
+                <h2><a href="/diploma1/article/${num.config_id}"><h2>${num.title}</h2></a></h2>
                 <h5><span class="glyphicon glyphicon-time"></span> Post by <a href="#">${num.author}</a>, ${num.createDate},
                     <span class="glyphicon glyphicon-thumbs-up"></span> ${num.likes}
                 </h5>
                 <c:forEach var="tag" items="${num.tags}">
-                    <h5><span class="label label-success">${tag}</span></h5><br>
+                    <h5><span class="label label-success">${tag}</span></h5>
                 </c:forEach>
                 <p>${num.smallText}</p>
-                <a href="/diploma1/article/${num.id}"><button type="button" class="btn btn-default">Читати повністю</button></a>
+                <a href="/diploma1/article/${num.config_id}"><button type="button" class="btn btn-primary">Читати повністю</button></a>
                 <br><br>
             </c:forEach>
 

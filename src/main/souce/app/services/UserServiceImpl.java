@@ -15,11 +15,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserData getUser(String email) {
-        UserData user = new UserData();
-        user.setEmail(email);
-        user.setPassword("7110eda4d09e062aa5e4a390b0a572ac0d2c0220");
-        //UserData userData = userDAO.readByEmail(email);
-        return user;
+        return userDAO.readByEmail(email);
     }
 
     @Override
@@ -29,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addLikePost(int postId, String userEmail) {
-
+        userDAO.addLikePost(postId, userEmail);
     }
 
     @Override

@@ -8,9 +8,10 @@ import app.entities.userdata.UserData;
  */
 public interface UserDAO {
     public void create(UserData userData);
-    public User readByID(int id);
-    public User readByEmail(String email);
-    public void update(User user);
-    public void delete(User user);
+    public UserData readByID(int id);
+    public UserData readByEmail(String email);
+    void update(UserData user);
+    void delete(UserData user);
 
+    void addLikePost(int postId, String userEmail);
 }

@@ -1,5 +1,6 @@
 package app.mock;
 
+import app.entities.entityActivity.Comment;
 import app.entities.post.Post;
 
 import app.services.*;
@@ -25,6 +26,11 @@ public class ArticleServiceImplMock implements ArticleService {
     }
 
     @Override
+    public List<Post> getArticlesList() {
+        return null;
+    }
+
+    @Override
     public int likeArticle(int id) {
         return postService.likePost(id);
     }
@@ -32,5 +38,15 @@ public class ArticleServiceImplMock implements ArticleService {
     @Override
     public int dislikeArticle(int id) {
         return postService.dislikePost(id);
+    }
+
+    @Override
+    public Post addComment(Comment comment, int postId) {
+        return null;
+    }
+
+    @Override
+    public Post deleteComment(int id) {
+        return null;
     }
 }

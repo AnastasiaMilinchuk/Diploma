@@ -25,8 +25,8 @@ public class CommentPostAction {
     public Post comment(Comment comment, int postId, String userEmail){
         UserData userData = userService.getUser(userEmail);
         comment.setAuthor(userData.getFirstName() + " " + userData.getLastName());
-        comment.setAuthor_id(userData.getConfig_id());
-        comment.setAuthorPhotoUrl(userData.getAvatar());
+        comment.setAuthorEmail(userData.getEmail());
+        comment.setAuthorPhotoUrl(userData.getPhoto());
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         Date date = new Date();
         try {

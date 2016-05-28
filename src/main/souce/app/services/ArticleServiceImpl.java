@@ -1,5 +1,6 @@
 package app.services;
 
+import app.dao.CommentDAO;
 import app.dao.PostDAO;
 import app.entities.entityActivity.Comment;
 import app.entities.post.Post;
@@ -46,7 +47,7 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public Post deleteComment(int id) {
-        return null;
+    public Post deleteComment(int postId, int commentId) {
+        return postDAO.deleteComment(postId, commentId);
     }
 }

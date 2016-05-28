@@ -14,4 +14,5 @@ public interface UserDAO {
     void delete(UserData user);
 
     void addLikePost(int postId, String userEmail);
+    void removeLikePost(int postId, String userEmail);
 }

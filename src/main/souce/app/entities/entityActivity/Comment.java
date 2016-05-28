@@ -1,27 +1,43 @@
 package app.entities.entityActivity;
 
+import org.omg.PortableInterceptor.ServerRequestInfo;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
  * Created by click on 5/5/2016.
  */
+@Document(collection = "comments")
 public class Comment {
-    private int id;
-    private int author_id;
+    private String id;
+    private int config_id;
+    private String authorEmail;
     private String author;
     private String authorPhotoUrl;
+    @Size(min=1, message = "Fill text of comment")
     private String text;
     private Date dateCreate;
 
     public Comment() {
     }
 
-    public int getAuthor_id() {
-        return author_id;
+    public int getConfig_id() {
+        return config_id;
     }
 
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
+    public void setConfig_id(int config_id) {
+        this.config_id = config_id;
+    }
+
+    public String getAuthorEmail() {
+        return authorEmail;
+    }
+
+    public void setAuthorEmail(String author_id) {
+        this.authorEmail = author_id;
     }
 
     public String getAuthor() {
@@ -32,11 +48,11 @@ public class Comment {
         this.author = author;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

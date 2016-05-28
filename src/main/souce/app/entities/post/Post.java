@@ -2,10 +2,14 @@ package app.entities.post;
 
 
 import app.entities.entityActivity.Comment;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by click on 5/16/2016.
@@ -16,14 +20,23 @@ public class Post {
     private int config_id;
     private String title;
     private String author;
+    private String authorEmail;
     private int likes;
-    private Date createDate;
+    private String createDate;
     private List<String> tags;
     private String smallText;
     private String text;
     private List<Comment> comments;
-
+    private List<String> photos;
     public Post() {
+    }
+
+    public List<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<String> photos) {
+        this.photos = photos;
     }
 
     public String getId() {
@@ -58,7 +71,7 @@ public class Post {
         this.text = text;
     }
 
-    public Post(int id, String title, String author, int likes, Date createDate, List<String> tags, String smallText) {
+    public Post(int id, String title, String author, int likes, String createDate, List<String> tags, String smallText) {
         this.config_id = id;
         this.title = title;
         this.author = author;
@@ -92,11 +105,11 @@ public class Post {
         this.likes = likes;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -114,5 +127,21 @@ public class Post {
 
     public void setSmallText(String smallText) {
         this.smallText = smallText;
+    }
+
+    public Set<String> getCommentAuthors() {
+        Set<String> commentAuthors = new HashSet<>(comments.size());
+        for(Comment c: comments) {
+            commentAuthors.add(c.getAuthorEmail());
+        }
+        return commentAuthors;
+    }
+
+    public String getAuthorEmail() {
+        return authorEmail;
+    }
+
+    public void setAuthorEmail(String authorEmail) {
+        this.authorEmail = authorEmail;
     }
 }

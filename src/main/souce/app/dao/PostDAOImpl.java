@@ -70,13 +70,36 @@ public class PostDAOImpl implements PostDAO {
     public Post addComment(Comment comment, int postId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("config_id").is(postId));
+
+        Query query1 = new Query();
+        query1.addCriteria(Criteria.where("_id").is("config"));
+        Update update1 = new Update();
+        update1.inc("config_id", 1);
+        mongoTemplate.updateFirst(query1, update1, Comment.class);
+        Comment c = mongoTemplate.findOne(query, Comment.class);
+        comment.setConfig_id(c.getConfig_id());
+
         Update update = new Update();
         update.addToSet("comments", comment);
+        mongoTemplate.updateFirst(query, update, Post.class);
         return mongoTemplate.findOne(query, Post.class);
     }
 
     @Override
-    public Post deleteComment(int id) {
-        return null;
+    public Post deleteComment(int postId, int commentId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("config_id").is(postId));
+        Post p = mongoTemplate.findOne(query, Post.class);
+        Comment del = new Comment();
+        for(Comment c: p.getComments()){
+            if(c.getConfig_id() == commentId){
+                del = c;
+                break;
+            }
+        }
+        Update update = new Update();
+        update.pull("comments", del);
+        mongoTemplate.updateFirst(query, update, Post.class);
+        return mongoTemplate.findOne(query, Post.class);
     }
 }

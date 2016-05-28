@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removelikePost(int postId, String userEmail) {
-
+        userDAO.removeLikePost(postId, userEmail);
     }
 
 

@@ -17,5 +17,5 @@ public interface ArticleService {
     public int likeArticle(int id);
     public int dislikeArticle(int id);
     public Post addComment(Comment comment, int postId);
-    public Post deleteComment(int id);
+    Post deleteComment(int postId, int commentId);
 }

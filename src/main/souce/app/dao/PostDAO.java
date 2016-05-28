@@ -15,5 +15,5 @@ public interface PostDAO {
     public int likePost(int id);
     public int dislikePost(int id);
     public Post addComment(Comment comment, int postId);
-    public Post deleteComment(int id);
+    public Post deleteComment(int postId, int commentId);
 }

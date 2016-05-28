@@ -26,35 +26,37 @@
                 <h5><span class="glyphicon glyphicon-time"></span> Post by <a href="#">${post.author}</a>, ${post.createDate},
                 </h5>
                 <c:forEach var="tag" items="${post.tags}">
-                    <h5><span class="label label-success">${tag}</span></h5><br>
+                    <h5><span class="label label-success">${tag}</span></h5>
                 </c:forEach>
 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <c:set var="i" value="0" scope="page"/>
+                        <c:forEach var="tag" items="${post.photos}">
+                            <li data-target="#photos" data-slide-to="${i}"></li>
+                            <c:set var="i" value="${i + 1}" scope="page"/>
+                        </c:forEach>
                     </ol>
 
                     <!-- Wrapper for slides -->
+                    <c:set var="i" value="0" scope="page"/>
                     <div class="carousel-inner" role="listbox">
+                    <c:forEach var="photo" items="${post.photos}">
+                        <c:choose>
+                        <c:when test="${i == 0}">
                         <div class="item active">
-                            <img src="http://demo.joomlashine.com/joomla-templates/jsn_artista/pro/images/sampledata/content/detail-image.jpg" alt="Chania">
+                            <img src='<c:url value="${photo}"/>' >
                         </div>
-
-                        <div class="item">
-                            <img src="imgs/img.jpg" alt="Chania">
-                        </div>
-
-                        <div class="item">
-                            <img src="imgs/img.jpg" alt="Flower">
-                        </div>
-
-                        <div class="item">
-                            <img src="imgs/img.jpg" alt="Flower">
-                        </div>
+                        </c:when>
+                            <c:otherwise>
+                                <div class="item">
+                                    <img src='<c:url value="${photo}"/>' >
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:set var="i" value="${i+1}" scope="page"/>
+                    </c:forEach>
                     </div>
 
                     <!-- Left and right controls -->
@@ -68,7 +70,7 @@
                     </a>
                 </div>
                 <br>
-                <p>${post.smallText}</p>
+                <p>${post.text}</p>
                 <br>
 
             <sec:authorize access="isAuthenticated()">
@@ -76,29 +78,40 @@
                         <h4> Like:  <a href=""><button type="submit" class="glyphicon glyphicon-thumbs-up like-button"> </button></a> ${post.likes}</h4>
                     </form:form>
                 <br>
+
                 <div id="comments">
                 <h4>Leave a Comment:</h4>
                 <form:form action="/diploma1/article/${post.config_id}/comments" modelAttribute="comment" method="post" enctype="utf8">
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" required></textarea>
+                        <form:textarea class="form-control" rows="3" path="text"/>
+                        <form:errors cssClass=" alert-danger error" path="text" element="div" />
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form:form>
                 <br><br>
 
-                <p><span class="badge">${post.comments}</span> Comments:</p><br>
+                <p><span class="badge">${post.comments.size()}</span> Comments:</p><br>
                     <c:forEach var="comment" items="${post.comments}">
                         <div class="row">
                             <div class="col-sm-2 text-center">
-                                <img src="${comment.authorPhotoUrl}" class="img-circle" height="65" width="65" alt="Avatar">
+                                <img src='<c:url value="${comment.authorPhotoUrl}"/>' class="img-circle" height="65" width="65" alt="Avatar">
                             </div>
                             <div class="col-sm-10">
-                                <h4>${comment.author}<small>${comment.dateCreate}</small></h4>
+                                <h5>${comment.author} <small>${comment.dateCreate}</small>
+                                <c:choose>
+                                    <c:when test="${post.commentAuthors.contains(user)}">
+                                        <form:form modelAttribute="post" action="/diploma1/article/${post.config_id}/deleteComment/${comment.id}" method="POST" enctype="utf8">
+                                           <a href=""> <button type="submit" class="glyphicon glyphicon-remove like-button"> </button> </a>
+                                        </form:form>
+                                    </c:when>
+                                </c:choose>
+                                </h5>
+
                                 <p>${comment.text}</p>
                                 <br>
                             </div>
-
                         </div>
+                        <br>
                     </c:forEach>
 
                 </div>

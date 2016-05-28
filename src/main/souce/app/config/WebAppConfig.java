@@ -2,12 +2,10 @@ package app.config;
 
 import app.actions.post.CommentPostAction;
 import app.actions.post.LikePostAction;
-import app.dao.PostDAO;
-import app.dao.PostDAOImpl;
-import app.dao.UserDAO;
-import app.dao.UserDAOImpl;
+import app.dao.*;
 import app.mock.ArticleServiceImplMock;
 import app.services.*;
+import app.validation.UserValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -71,8 +69,19 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     CommentPostAction getCommentPostAction(){
         return new CommentPostAction();
     }
+
     @Bean
     PostDAO getPostDAO(){
         return new PostDAOImpl();
+    }
+
+    @Bean
+    UserValidator getUserValidator(){
+        return new UserValidator();
+    }
+
+    @Bean
+    CommentDAO getCommentDAO(){
+        return new CommentDaoImpl();
     }
 }

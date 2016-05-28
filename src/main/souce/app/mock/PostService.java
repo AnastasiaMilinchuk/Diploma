@@ -39,7 +39,7 @@ public class PostService implements app.services.PostService{
             List tag = new ArrayList<>();
             tag.add(tags[i]);
             Object[] id = ids.values().toArray();
-            posts.add(new Post((int)(this.i[i]), p[i], author[i], likes[i], new Date(12), tag, smallText));
+            posts.add(new Post((int)(this.i[i]), p[i], author[i], likes[i], "", tag, smallText));
         }
         return posts;
     }
@@ -49,7 +49,7 @@ public class PostService implements app.services.PostService{
         int i = ids.get(id);
         List tag = new ArrayList<>();
         tag.add(tags[i]);
-        return new Post(id, p[i], author[i], likes[i], new Date(12), tag, smallText);
+        return new Post(id, p[i], author[i], likes[i], "", tag, smallText);
     }
 
     public static List<Tag> getTags() {

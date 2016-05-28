@@ -63,4 +63,13 @@ public class UserDAOImpl implements UserDAO {
         update.addToSet("likePosts", postId);
         mongoTemplate.updateFirst(query, update, UserData.class);
     }
+
+    @Override
+    public void removeLikePost(int postId, String userEmail) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").is(userEmail));
+        Update update = new Update();
+        update.pull("likePosts", postId);
+        mongoTemplate.updateFirst(query, update, UserData.class);
+    }
 }

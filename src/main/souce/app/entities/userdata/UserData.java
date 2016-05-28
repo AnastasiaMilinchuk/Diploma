@@ -51,7 +51,7 @@ public class UserData{
     private List<Integer> ownArticle;
     private Set<Integer> likePosts = new HashSet<>();
     private List<Answer> answers;
-    private String avatar;
+    private String photo;
 
 
     public UserData() {
@@ -185,11 +185,11 @@ public class UserData{
         this.answers = answers;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

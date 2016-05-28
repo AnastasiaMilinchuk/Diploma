@@ -4,6 +4,7 @@ import app.adapters.UserAdapter;
 import app.entities.userdata.User;
 import app.entities.userdata.UserData;
 import app.services.UserService;
+import app.validation.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,6 +43,9 @@ public class SignUpController {
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Autowired
+    UserValidator validator;
+
 
     @RequestMapping( method = RequestMethod.POST)
     public ModelAndView registerUserAccount(@ModelAttribute("userData") @Valid UserData userData,
@@ -57,16 +61,24 @@ public class SignUpController {
             return new ModelAndView("signup", "user", userData);
         }
         else {
-            // adapt password
-            userData = UserAdapter.adapt(userData);
-            // save user
-            userService.create(userData);
-            // register user in spring session
-            UserDetails registeredUser = userDetailsService.loadUserByUsername(userData.getEmail());
-            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(registeredUser,
-                    new Object(),
-                    registeredUser.getAuthorities()));
-            return new ModelAndView("home", "user", userData);
+            //check exist email
+            if(!validator.checkExistEmail(userData.getEmail())) {
+                // adapt password
+                userData = UserAdapter.adapt(userData);
+                // save user
+                userService.create(userData);
+                // register user in spring session
+                UserDetails registeredUser = userDetailsService.loadUserByUsername(userData.getEmail());
+                SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(registeredUser,
+                        new Object(),
+                        registeredUser.getAuthorities()));
+                return new ModelAndView("home", "user", userData);
+            }
+            else {
+                result.addError(new ObjectError("email", "This email already exist"));
+                return new ModelAndView("signup", "user", userData);
+            }
+
         }
 
     }

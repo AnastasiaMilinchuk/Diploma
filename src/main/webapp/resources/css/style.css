@@ -38,3 +38,8 @@ footer {
     background-color: #ffffff;
     border: none;
 }
+#map {
+    width: 100%;
+    height: 450px;
+    background-color: #CCC;
+}

@@ -3,7 +3,7 @@ package app.actions.post;
 import app.entities.entityActivity.Comment;
 import app.entities.post.Post;
 import app.entities.userdata.UserData;
-import app.services.ArticleService;
+import app.services.PostService;
 import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class CommentPostAction {
     @Autowired
-    ArticleService articleService;
+    PostService postService;
 
     @Autowired
     UserService userService;
@@ -34,7 +34,7 @@ public class CommentPostAction {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        articleService.addComment(comment, postId);
-        return articleService.getArticleById(postId);
+        postService.addComment(comment, postId);
+        return postService.getArticleById(postId);
     }
 }

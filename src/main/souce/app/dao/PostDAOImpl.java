@@ -1,6 +1,7 @@
 package app.dao;
 
 import app.entities.entityActivity.Comment;
+import app.entities.entityActivity.Tag;
 import app.entities.post.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -31,8 +32,11 @@ public class PostDAOImpl implements PostDAO {
 
     @Override
     public List<Post> getPostByTag(int tag) {
+        Query tags = new Query();
+        tags.addCriteria(Criteria.where("config_id").is(tag));
+        Tag t = mongoTemplate.findOne(tags, Tag.class);
         Query query = new Query();
-        query.addCriteria(Criteria.where("tags").all(tag));
+        query.addCriteria(Criteria.where("tags").all(t.getName()));
         List<Post> posts = mongoTemplate.find(query, Post.class);
         return posts;
     }
@@ -41,6 +45,15 @@ public class PostDAOImpl implements PostDAO {
     public List<Post> getPostsList() {
         List<Post > posts = mongoTemplate.findAll(Post.class);
         posts.remove(0);
+        return posts;
+    }
+
+    @Override
+    public List<Post> getPostsListByUser(String email) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("authorEmail").is(email));
+        List<Post> posts = mongoTemplate.find(query, Post.class);
+        System.out.println("posts: " + posts.size());
         return posts;
     }
 

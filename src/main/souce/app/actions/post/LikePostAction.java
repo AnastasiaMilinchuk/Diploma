@@ -1,7 +1,7 @@
 package app.actions.post;
 
 import app.entities.userdata.UserData;
-import app.services.ArticleService;
+import app.services.PostService;
 import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +13,7 @@ public class LikePostAction {
     // if not - add like to post and add user post to user
     // if like - dislike post
     @Autowired
-    private ArticleService articleService;
+    private PostService postService;
 
     @Autowired
     private UserService userService;
@@ -22,11 +22,11 @@ public class LikePostAction {
         if(!checkLike(postId, userEmail)){
             // like
             userService.addLikePost(postId, userEmail);
-            articleService.likeArticle(postId);
+            postService.likeArticle(postId);
         }
         else{
             // dislike
-            articleService.dislikeArticle(postId);
+            postService.dislikeArticle(postId);
             userService.removelikePost(postId, userEmail);
         }
 

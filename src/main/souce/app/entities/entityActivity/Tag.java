@@ -1,28 +1,39 @@
 package app.entities.entityActivity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
  * Created by click on 5/5/2016.
  */
+@Document(collection = "tags")
 public class Tag {
-    private int id;
+    private String id;
+    private int config_id;
     private String name;
     private int postsQuantity;
 
     public Tag() {
     }
 
-    public Tag(int id, String name, int postsQuantity) {
-        this.id = id;
+    public Tag(String name, int postsQuantity) {
         this.name = name;
         this.postsQuantity = postsQuantity;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public int getConfig_id() {
+        return config_id;
+    }
+
+    public void setConfig_id(int config_id) {
+        this.config_id = config_id;
     }
 
     public String getName() {

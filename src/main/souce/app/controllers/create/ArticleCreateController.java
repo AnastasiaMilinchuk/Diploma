@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ArticleCreateController {
-    @RequestMapping(value = "/createPost", method = RequestMethod.GET)
-    public String loginPage(Model model){
+    @RequestMapping(value = "createPost", method = RequestMethod.GET)
+    public String loadPage(Model model){
         return "createPost";
     }
 }

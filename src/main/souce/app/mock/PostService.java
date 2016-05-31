@@ -3,14 +3,14 @@ package app.mock;
 
 import app.entities.entityActivity.Tag;
 import app.entities.post.Post;
+import app.services.PostService1;
 
-import java.sql.Date;
 import java.util.*;
 
 /**
  * Created by click on 5/16/2016.
  */
-public class PostService implements app.services.PostService{
+public class PostService implements PostService1 {
     String[] p = {"Незабутня подорож карпатами",
                 "Чому велика вода стирає пам'ять",
                 "С высоты птичьего полета",
@@ -55,7 +55,7 @@ public class PostService implements app.services.PostService{
     public static List<Tag> getTags() {
         List<Tag> t = new ArrayList<>();
         for (int i = 0; i < tags.length; i++){
-            Tag tag = new Tag(i, tags[i], (new Random()).nextInt(20));
+            Tag tag = new Tag( tags[i], (new Random()).nextInt(20));
             t.add(tag);
         }
         return t;

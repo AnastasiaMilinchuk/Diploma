@@ -3,7 +3,6 @@ package app.config;
 import app.actions.post.CommentPostAction;
 import app.actions.post.LikePostAction;
 import app.dao.*;
-import app.mock.ArticleServiceImplMock;
 import app.services.*;
 import app.validation.UserValidator;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +39,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public PostService getPostService(){
+    public PostService1 getPostService(){
         return new app.mock.PostService();
     }
 
@@ -50,8 +49,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public ArticleService getArticleService() {
-        return new ArticleServiceImpl();
+    public PostService getArticleService() {
+        return new PostServiceImpl();
     }
 
     @Bean
@@ -84,4 +83,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     CommentDAO getCommentDAO(){
         return new CommentDaoImpl();
     }
+
+    @Bean
+    PlaceService getPlaceService(){ return new PlaceServiceImpl();}
+
+    @Bean
+    TagDAO getTagDAO(){ return new TagDAOImpl(); }
+
 }

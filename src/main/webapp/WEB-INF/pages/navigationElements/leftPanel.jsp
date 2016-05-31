@@ -11,10 +11,10 @@
 <sec:authorize access="isAuthenticated()">
     <div class="col-sm-3 sidenav leftnav">
         <ul class="nav nav-pills nav-stacked">
-            <li><a href="home">Profile</a></li>
-            <li><a href="#section2">My Articles</a></li>
-            <li><a href="#section3">My Places</a></li>
-            <li><a href="#section3">Favorites</a></li>
+            <li><a href="/diploma1/profile">Profile</a></li>
+            <li><a href="/diploma1/myPosts">My Posts</a></li>
+            <li><a href="/diploma1/myPlaces">My Places</a></li>
+            <li><a href="/diploma1/favorites">Favorites</a></li>
         </ul><br>
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search Blog..">

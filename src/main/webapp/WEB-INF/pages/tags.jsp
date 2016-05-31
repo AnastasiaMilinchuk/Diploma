@@ -32,7 +32,7 @@
             </div>
             <br>
             <c:forEach var="tag" items="${tags}">
-                <h2><a href="/diploma1/tags/${tag.id}"><small>${tag.name}</small></a></h2>
+                <h2><a href="/diploma1/tags/${tag.config_id}"><small>${tag.name}</small></a></h2>
                 <h5><a href="#">${tag.postsQuantity}</a>  posts
                 </h5>
                 <br>

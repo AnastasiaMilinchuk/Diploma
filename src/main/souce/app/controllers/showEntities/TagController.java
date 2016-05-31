@@ -1,8 +1,7 @@
 package app.controllers.showEntities;
 
-import app.entities.post.Article;
 import app.entities.post.Post;
-import app.services.ArticleService;
+import app.services.PostService;
 import app.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class TagController {
     TagService tagService;
 
     @Autowired
-    ArticleService articleService;
+    PostService postService;
 
     @RequestMapping(value = "/tags",method = RequestMethod.GET)
     public String loginPage( Model model){
@@ -34,7 +33,7 @@ public class TagController {
 
     @RequestMapping(value = "/tags/{tag}", method = RequestMethod.GET)
     public String articlesByTag(@PathVariable("tag") int tag, Model model) {
-        List<Post> posts = articleService.getArticlesByTag(tag);
+        List<Post> posts = postService.getArticlesByTag(tag);
         model.addAttribute("posts", posts);
         return "home";
     }

@@ -12,6 +12,7 @@ public interface PostDAO {
     public app.entities.post.Post getPostById(int id);
     public List<Post> getPostByTag(int tag);
     public List<Post> getPostsList();
+    public List<Post> getPostsListByUser(String email);
     public int likePost(int id);
     public int dislikePost(int id);
     public Post addComment(Comment comment, int postId);

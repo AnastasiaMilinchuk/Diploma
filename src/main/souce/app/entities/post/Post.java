@@ -2,6 +2,7 @@ package app.entities.post;
 
 
 import app.entities.entityActivity.Comment;
+import app.entities.place.Place;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,6 +25,7 @@ public class Post {
     private int likes;
     private String createDate;
     private List<String> tags;
+    private Place place;
     private String smallText;
     private String text;
     private List<Comment> comments;
@@ -143,5 +145,13 @@ public class Post {
 
     public void setAuthorEmail(String authorEmail) {
         this.authorEmail = authorEmail;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }

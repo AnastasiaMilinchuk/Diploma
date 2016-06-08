@@ -25,10 +25,12 @@
 
                 <h5><span class="glyphicon glyphicon-time"></span> Post by <a href="#">${post.author}</a>, ${post.createDate},
                 </h5>
-                <c:forEach var="tag" items="${post.tags}">
-                    <h5><span class="label label-success">${tag}</span></h5>
-                </c:forEach>
-
+                <h5>
+                    <c:forEach var="tag" items="${post.tags}">
+                        <span class="label label-success">${tag}</span>
+                    </c:forEach>
+                </h5>
+                <br>
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">

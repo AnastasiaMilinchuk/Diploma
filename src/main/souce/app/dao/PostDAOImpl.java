@@ -3,7 +3,9 @@ package app.dao;
 import app.entities.entityActivity.Comment;
 import app.entities.entityActivity.Tag;
 import app.entities.post.Post;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -114,5 +116,23 @@ public class PostDAOImpl implements PostDAO {
         update.pull("comments", del);
         mongoTemplate.updateFirst(query, update, Post.class);
         return mongoTemplate.findOne(query, Post.class);
+    }
+
+    @Override
+    public List<Post> getRecentPosts() {
+        Query query = new Query();
+        query.with(new Sort(Sort.Direction.DESC,"config_id"));
+        List<Post> posts = mongoTemplate.find(query, Post.class);
+        posts.remove(posts.size() - 1);
+        return posts;
+    }
+
+    @Override
+    public List<Post> getMostPopularPosts() {
+        Query query = new Query();
+        query.with(new Sort(Sort.Direction.DESC,"likes"));
+        List<Post> posts = mongoTemplate.find(query, Post.class);
+        posts.remove(posts.size() - 1);
+        return posts;
     }
 }

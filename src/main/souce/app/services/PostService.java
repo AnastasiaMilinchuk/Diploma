@@ -18,4 +18,8 @@ public interface PostService {
     public int dislikeArticle(int id);
     public Post addComment(Comment comment, int postId);
     public Post deleteComment(int postId, int commentId);
+    public List<Post> getRecentPosts();
+    public List<Post> getMostPopularPosts();
+    public List<Post> getRecommendedPost(String email);
+
 }

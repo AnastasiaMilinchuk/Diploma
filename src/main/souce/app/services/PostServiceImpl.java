@@ -54,4 +54,19 @@ public class PostServiceImpl implements PostService {
     public Post deleteComment(int postId, int commentId) {
         return postDAO.deleteComment(postId, commentId);
     }
+
+    @Override
+    public List<Post> getRecentPosts() {
+        return postDAO.getRecentPosts();
+    }
+
+    @Override
+    public List<Post> getMostPopularPosts() {
+        return postDAO.getMostPopularPosts();
+    }
+
+    @Override
+    public List<Post> getRecommendedPost(String email) {
+        return null;
+    }
 }
